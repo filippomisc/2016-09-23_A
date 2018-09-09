@@ -3,7 +3,7 @@ package it.polito.tdp.gestionale.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Studente {
+public class Studente extends Nodo{
 
 	private List<Corso> corsi;
 	private int matricola;
@@ -73,4 +73,14 @@ public class Studente {
 	public void setCorsi(List<Corso> corsi) {
 		this.corsi = corsi;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + matricola;
+		return result;
+	}
+
+
 }

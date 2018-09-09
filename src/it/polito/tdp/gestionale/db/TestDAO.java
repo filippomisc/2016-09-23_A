@@ -5,29 +5,27 @@ import java.util.List;
 import java.util.Map;
 
 import it.polito.tdp.gestionale.model.Corso;
+import it.polito.tdp.gestionale.model.CorsoIdMap;
+import it.polito.tdp.gestionale.model.IscrizioneIdMap;
 import it.polito.tdp.gestionale.model.Studente;
+import it.polito.tdp.gestionale.model.StudenteIdMap;
 
 public class TestDAO {
 
 	public static void main(String[] args) {
 
-		DidatticaDAO dDAO = new DidatticaDAO();
+		DidatticaDAO dao = new DidatticaDAO();
 		
-		// Ottengo corsi e studenti
-		List<Corso> corsi = dDAO.getTuttiICorsi(); 
-		System.out.println(corsi.size());
-		List<Studente> studenti = dDAO.getTuttiStudenti();
-		System.out.println(studenti.size());
+	
+		StudenteIdMap studenteIdMap = new StudenteIdMap();
+		CorsoIdMap corsoIdMap = new CorsoIdMap();
+		IscrizioneIdMap iscrizioneIdMap = new IscrizioneIdMap();
 		
-		// Creo una mappa con studenti e matricola
-		Map<Integer, Studente> mapStudenti = new HashMap<Integer, Studente>();
-		for (Studente studente: studenti)
-			mapStudenti.put(studente.getMatricola(), studente);
 		
-		// Completo le informazioni di un corso
-		Corso corso = new Corso("01KSUPG");
-		dDAO.getStudentiIscrittiAlCorso(corso, mapStudenti);
-		System.out.println(corso.getStudenti());
+		System.out.println(dao.getTuttiStudenti(studenteIdMap).size());
+		System.out.println(dao.getTuttiICorsi(corsoIdMap).size());
+		System.out.println(dao.getTutteIscrizioni(iscrizioneIdMap, corsoIdMap, studenteIdMap).size());
+		System.out.println(dao.getStudentiIscrittiAlCorso(studenteIdMap, "03BNTPG").size());
 	}
 
 }
