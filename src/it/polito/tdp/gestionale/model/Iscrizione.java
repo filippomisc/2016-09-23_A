@@ -7,9 +7,10 @@ public class Iscrizione {
 	private Corso corso;
 	
 	
-	public Iscrizione(Studente studente, Corso corso) {
+	public Iscrizione(int id, Studente studente, Corso corso) {
 		this.studente = studente;
 		this.corso = corso;
+		this.id=id;
 	}
 
 

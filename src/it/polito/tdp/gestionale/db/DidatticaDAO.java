@@ -152,6 +152,7 @@ public class DidatticaDAO {
 		final String sql = "SELECT * FROM iscrizione";
 
 		List<Iscrizione> iscrizioni= new LinkedList<Iscrizione>();
+		int id = 0;
 
 		try {
 			Connection conn = ConnectDB.getConnection();
@@ -165,7 +166,9 @@ public class DidatticaDAO {
 				
 				Corso corso = corsoIdMap.get(rs.getString("codins"));
 				
-				Iscrizione iscrizione = new Iscrizione(studente, corso);
+				id++;
+				
+				Iscrizione iscrizione = new Iscrizione(id, studente, corso);
 				
 				iscrizioni.add(iscrizione);
 			}
