@@ -10,16 +10,14 @@ public class Studente extends Nodo{
 	private String cognome;
 	private String nome;
 	private String cds;
-
-	public Studente(int matricola) {
-		this.matricola = matricola;
-	}
+	
 
 	public Studente(int matricola, String cognome, String nome, String cds) {
 		this.matricola = matricola;
 		this.cognome = cognome;
 		this.nome = nome;
 		this.cds = cds;
+		this.corsi = null;
 	}
 
 	/*
@@ -27,6 +25,11 @@ public class Studente extends Nodo{
 	 */
 	public int getMatricola() {
 		return matricola;
+	}
+
+	@Override
+	public String toString() {
+		return matricola + " " + nome + " " + cognome;
 	}
 
 	public void setMatricola(int matricola) {

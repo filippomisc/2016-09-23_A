@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import it.polito.tdp.gestionale.model.Conteggio;
 import it.polito.tdp.gestionale.model.Corso;
 import it.polito.tdp.gestionale.model.CorsoIdMap;
 import it.polito.tdp.gestionale.model.Iscrizione;
@@ -180,5 +181,72 @@ public class DidatticaDAO {
 			throw new RuntimeException("Errore Db");
 		}
 	}
+	
+	public int getFrequenza(int matricola) {
+		
+		final String sql = "select distinct count(*) as cnt\n" + 
+				"from iscrizione\n" + 
+				"where iscrizione.matricola=?";
+
+
+		try {
+			Connection conn = ConnectDB.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setInt(1, matricola);
+
+			ResultSet rs = st.executeQuery();
+
+			rs.next();
+
+			int freq = rs.getInt("cnt");
+
+			conn.close();
+			
+			return freq;
+
+		} catch (SQLException e) {
+			// e.printStackTrace();
+			throw new RuntimeException("Errore Db");
+		}
+	}
+	
+public List<Conteggio> counteggi() {
+		
+		final String sql = "select distinct frequenze.cnt as num, count(*) as c " + 
+				"from (select distinct matricola as matr, count(*) as cnt " + 
+				"from iscrizione " + 
+				"group by matricola) as frequenze " + 
+				"group by frequenze.cnt";
+
+
+		List<Conteggio> conteggios = new ArrayList<>();
+				
+		try {
+			Connection conn = ConnectDB.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);
+
+			ResultSet rs = st.executeQuery();
+
+			while(rs.next()) {
+
+			int num = rs.getInt("num");
+			int numStudenti = rs.getInt("c");
+			
+			Conteggio conteggio = new Conteggio(num, numStudenti);
+			
+			conteggios.add(conteggio);
+
+			conn.close();
+			}
+			
+			return conteggios;
+			
+
+		} catch (SQLException e) {
+			// e.printStackTrace();
+			throw new RuntimeException("Errore Db");
+		}
+	}
+	
 
 }

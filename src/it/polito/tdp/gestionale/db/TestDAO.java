@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.omg.DynamicAny.DynAnyOperations;
+
 import it.polito.tdp.gestionale.model.Corso;
 import it.polito.tdp.gestionale.model.CorsoIdMap;
 import it.polito.tdp.gestionale.model.IscrizioneIdMap;
@@ -26,6 +28,11 @@ public class TestDAO {
 		System.out.println(dao.getTuttiICorsi(corsoIdMap).size());
 		System.out.println(dao.getTutteIscrizioni(iscrizioneIdMap, corsoIdMap, studenteIdMap).size());
 		System.out.println(dao.getStudentiIscrittiAlCorso(studenteIdMap, "03BNTPG").size());
+		System.out.println();
+		System.out.println(dao.getFrequenza(203404));
+		
+		System.out.println();
+		System.out.println(dao.counteggi());
 	}
 
 }
