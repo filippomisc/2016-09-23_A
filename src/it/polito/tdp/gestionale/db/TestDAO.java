@@ -28,6 +28,7 @@ public class TestDAO {
 		System.out.println(dao.getTuttiICorsi(corsoIdMap).size());
 		System.out.println(dao.getTutteIscrizioni(iscrizioneIdMap, corsoIdMap, studenteIdMap).size());
 		System.out.println(dao.getStudentiIscrittiAlCorso(studenteIdMap, "03BNTPG").size());
+		
 		System.out.println();
 		System.out.println(dao.getFrequenza(203404));
 		

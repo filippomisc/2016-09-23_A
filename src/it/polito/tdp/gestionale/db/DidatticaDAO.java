@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import it.polito.tdp.gestionale.model.Conteggio;
 import it.polito.tdp.gestionale.model.Corso;
@@ -184,6 +183,8 @@ public class DidatticaDAO {
 	
 	public int getFrequenza(int matricola) {
 		
+		
+		//data la matricola trova il numero di corsi frequentati da quello studente
 		final String sql = "select distinct count(*) as cnt\n" + 
 				"from iscrizione\n" + 
 				"where iscrizione.matricola=?";
@@ -212,6 +213,9 @@ public class DidatticaDAO {
 	
 public List<Conteggio> counteggi() {
 		
+		//serve a indicare quanti studenti sono iscritti ad un solo corso, quanti due, quanti tre... fino a 12
+		//TODO c'è un poroblema alla riga 230, ma in heidisql la query funziona
+	
 		final String sql = "select distinct frequenze.cnt as num, count(*) as c " + 
 				"from (select distinct matricola as matr, count(*) as cnt " + 
 				"from iscrizione " + 

@@ -29,6 +29,17 @@ public class DidatticaGestionaleController {
 	void doCorsiFrequentati(ActionEvent event) {
 		txtResult.clear();
 		txtResult.setText("premuto Corsi Frequentati");
+		
+		/**
+		 * QUIN NON C'è NULLA DA CONTROLLARE PERCHE NON CI SONO DATI INPUT
+		 */
+		model.createGraph();
+		
+		
+		this.txtResult.appendText(model.getFrequenzeStudenti().toString());
+		
+		this.txtResult.appendText("\nSTATISTICHE:");
+		this.txtResult.appendText("\n" + model.getStat());
 	}
 	
 	@FXML
